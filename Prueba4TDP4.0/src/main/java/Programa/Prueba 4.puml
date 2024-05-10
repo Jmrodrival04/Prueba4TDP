@@ -1,0 +1,51 @@
+@startuml
+
+interface Programa {
+    +ejecutar()
+    +seDetendra(): boolean
+    +reverse()
+    +isReversed(): boolean
+}
+
+class ProgramaCuentaArriba {
+    -valor: int
+    -reverse: boolean
+    +ProgramaCuentaArriba(valorInicial: int)
+    +ejecutar()
+    +seDetendra(): boolean
+    +reverse()
+    +isReversed(): boolean
+    +getValor(): int
+}
+
+class ProgramaCuentaAtras {
+    -valor: int
+    -reverse: boolean
+    +ProgramaCuentaAtras(valorInicial: int)
+    +ejecutar()
+    +seDetendra(): boolean
+    +reverse()
+    +isReversed(): boolean
+    +getValor(): int
+}
+
+class Main {
+    -stopRequested: boolean
+    -textArea: JTextArea
+    -currentProgram: Programa
+    +main(args: String[])
+    +executeProgram(programa: Programa)
+}
+
+class HaltChecker {
+    +verificarSiSeDetendra(programa: Programa): boolean
+}
+
+Main -- Programa
+Main "1" -- "1" ProgramaCuentaArriba : contains
+Main "1" -- "1" ProgramaCuentaAtras : contains
+Programa <|-- ProgramaCuentaArriba
+Programa <|-- ProgramaCuentaAtras
+HaltChecker -- Programa
+
+@enduml
